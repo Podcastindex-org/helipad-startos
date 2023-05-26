@@ -1,0 +1,115 @@
+id: helipad 
+title: "Helipad"
+version: 0.1.10
+release-notes: |
+  * v0.1.10 - Elements of style... (v0.1.10) [Release Notes](https://github.com/Podcastindex-org/helipad/releases/tag/v0.1.10)
+license: mit
+wrapper-repo: "https://github.com/ericpp/helipad-startos"
+upstream-repo: "https://github.com/Podcastindex-org/helipad"
+support-site: "https://podcastindex.social"
+marketing-site: "https://podcastindex.org"
+donation-url: "https://podcastindex.org/"
+build: ["make"]
+description:
+  short: View boosts & boostagrams from Podcasting 2.0 apps
+  long: |
+    Helipad shows boosts and boostagram messages coming in to your
+    Lightning node from your listeners who are using Podcasting 2.0 apps.
+assets:
+  license: LICENSE
+  icon: icon.jpg
+  instructions: instructions.md
+main:
+  type: docker
+  image: main
+  entrypoint: docker_entrypoint.sh
+  args: []
+  mounts:
+    main: /app/data
+    lnd: /mnt/lnd
+health-checks:
+  main:
+    name: Web Interface
+    success-message: Helipad is ready to visit in a web browser
+    type: docker
+    image: main
+    entrypoint: "check-web.sh"
+    args: []
+    inject: true
+    system: false
+    io-format: json
+config: 
+  get:
+    type: script
+  set:
+    type: script
+properties:
+  type: script
+volumes:
+  main:
+    type: data
+  lnd:
+    type: pointer
+    package-id: lnd
+    volume-id: main
+    path: "/public"
+    readonly: true
+interfaces:
+  main:
+    name: Helipad Web Interface
+    description: Specifies the interface to listen on for HTTP connections.
+    tor-config:
+      port-mapping:
+        80: "2112"
+    lan-config:
+      443:
+        ssl: true
+        internal: 2112
+    ui: true
+    protocols:
+      - tcp
+      - http
+dependencies:
+  lnd:
+    version: ">=0.13.4 <0.17.0"
+    description: Used to communicate with your local Lightning wallet.
+    requirement:
+      type: "opt-out"
+      how: Use the LND instance by default
+    config: ~
+backup:
+  create:
+    type: docker
+    image: compat
+    system: true 
+    entrypoint: compat 
+    args: 
+      - duplicity
+      - create
+      - /mnt/backup
+      - /app/data/data
+    mounts:
+      BACKUP: "/mnt/backup"
+      main: "/app/data/data"
+  restore:
+    type: docker
+    image: compat
+    system: true
+    entrypoint: compat
+    args:
+      - duplicity
+      - restore
+      - /mnt/backup
+      - /app/data/data
+    mounts:
+      BACKUP: "/mnt/backup"
+      main: "/app/data/data"
+migrations:
+ from:
+   "*":
+     type: script
+     args: ["from"]
+ to:
+   "*":
+     type: script
+     args: ["to"]
