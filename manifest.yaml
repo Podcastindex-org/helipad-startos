@@ -25,7 +25,7 @@ main:
   entrypoint: docker_entrypoint.sh
   args: []
   mounts:
-    main: /app/data
+    main: /data
     lnd: /mnt/lnd
 health-checks:
   main:
@@ -87,10 +87,10 @@ backup:
       - duplicity
       - create
       - /mnt/backup
-      - /app/data/data
+      - /data/data
     mounts:
       BACKUP: "/mnt/backup"
-      main: "/app/data/data"
+      main: "/data/data"
   restore:
     type: docker
     image: compat
@@ -100,10 +100,10 @@ backup:
       - duplicity
       - restore
       - /mnt/backup
-      - /app/data/data
+      - /data/data
     mounts:
       BACKUP: "/mnt/backup"
-      main: "/app/data/data"
+      main: "/data/data"
 migrations:
  from:
    "*":
