@@ -4,7 +4,7 @@ set -e
 
 export HELIPAD_DATABASE_DIR="/data/db/database.db"
 export HELIPAD_LISTEN_PORT="2112"
-export HELIPAD_RUNAS_USER="1000"
+export HELIPAD_RUNAS_USER="helipad"
 export LND_ADMINMACAROON="/mnt/lnd/admin.macaroon"
 export LND_TLSCERT="/mnt/lnd/tls.cert"
 export LND_URL="lnd.embassy:10009"
@@ -17,7 +17,8 @@ fi
 if ! [ -d "/data/db" ]; then
   echo "Creating database directory"
   mkdir -p /data/db
-  chown -v 1000:1000 /data/db
+  touch /data/db/database.db
+  chown -R helipad:helipad /data/db
 fi
 
 if ! [ -f "/usr/local/share/ca-certificates/cert.crt" ]; then
