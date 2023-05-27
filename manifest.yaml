@@ -8,7 +8,6 @@ wrapper-repo: "https://github.com/ericpp/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
 support-site: "https://podcastindex.social"
 marketing-site: "https://podcastindex.org"
-donation-url: "https://podcastindex.org/"
 build: ["make"]
 description:
   short: View boosts & boostagrams from Podcasting 2.0 apps
@@ -28,16 +27,10 @@ main:
     main: /data
     lnd: /mnt/lnd
 health-checks:
-  main:
+  web-ui:
     name: Web Interface
     success-message: Helipad is ready to visit in a web browser
-    type: docker
-    image: main
-    entrypoint: "check-web.sh"
-    args: []
-    inject: true
-    system: false
-    io-format: json
+    type: script
 config: 
   get:
     type: script
@@ -72,10 +65,9 @@ interfaces:
 dependencies:
   lnd:
     version: ">=0.13.4 <0.17.0"
-    description: Used to communicate with your local Lightning wallet.
+    description: Used to communicate with your Lightning wallet.
     requirement:
-      type: "opt-out"
-      how: Use the LND instance by default
+      type: required
     config: ~
 backup:
   create:

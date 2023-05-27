@@ -26,7 +26,6 @@ USER root
 RUN apt-get update && apt-get install -y apt-utils ca-certificates openssl sqlite3 tini
 
 COPY ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
-COPY ./check-web.sh /usr/local/bin/check-web.sh
 RUN chmod +x /usr/local/bin/*.sh
 
 RUN mkdir /opt/helipad
