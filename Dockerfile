@@ -1,5 +1,5 @@
 ##: Build stage
-FROM rust:latest AS builder
+FROM rust:bullseye AS builder
 
 # arm64 or amd64
 ARG PLATFORM
@@ -16,7 +16,7 @@ RUN cargo build --release
 RUN cp target/release/helipad .
 
 ##: Bundle stage
-FROM debian:buster-slim AS runner
+FROM debian:bullseye-slim AS runner
 
 ARG ARCH
 ARG PLATFORM
