@@ -31,11 +31,7 @@ health-checks:
     name: Web Interface
     success-message: Helipad is ready to visit in a web browser
     type: script
-config: 
-  get:
-    type: script
-  set:
-    type: script
+config: ~
 properties:
   type: script
 volumes:
