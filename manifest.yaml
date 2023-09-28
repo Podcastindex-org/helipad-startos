@@ -4,7 +4,7 @@ version: 0.1.10.5
 release-notes: |
   * v0.1.10 - Elements of style... (v0.1.10) [Release Notes](https://github.com/Podcastindex-org/helipad/releases/tag/v0.1.10)
 license: mit
-wrapper-repo: "https://github.com/ericpp/helipad-startos"
+wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
 support-site: "https://podcastindex.social"
 marketing-site: "https://podcastindex.org"
