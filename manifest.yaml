@@ -1,8 +1,8 @@
-id: helipad 
+id: helipad
 title: "Helipad"
-version: 0.1.10.5
+version: 0.1.11-beta
 release-notes: |
-  * v0.1.10 - Elements of style... (v0.1.10) [Release Notes](https://github.com/Podcastindex-org/helipad/releases/tag/v0.1.10)
+  * v0.1.11-beta - Reply boosts
 license: mit
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
@@ -31,7 +31,11 @@ health-checks:
     name: Web Interface
     success-message: Helipad is ready to visit in a web browser
     type: script
-config: ~
+config:
+  get:
+    type: script
+  set:
+    type: script
 properties:
   type: script
 volumes:
@@ -60,7 +64,7 @@ interfaces:
       - http
 dependencies:
   lnd:
-    version: ">=0.13.4 <0.17.0"
+    version: ">=0.13.4"
     description: Used to communicate with your Lightning wallet.
     requirement:
       type: required
