@@ -1,6 +1,5 @@
 # sha256 from: docker buildx imagetools inspect <image>
-#FROM podcastindexorg/podcasting20-helipad@sha256:6767de3126b0a7d317f7c87766a1f063baa44fb85dc5496c794ff9aff306a4c1
-FROM ericpp/helipad@sha256:42d06927e5f6ff5045045127dfb783ae501db4fcb2a02fc7d1970a4bf842a93e
+FROM ericpp/helipad@sha256:7d37cdc143a00e262fab75e87d4de1eb4e1f56e16f6d03026bae165bf33d4fb9
 
 ARG ARCH
 ARG PLATFORM

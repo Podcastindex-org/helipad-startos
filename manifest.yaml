@@ -1,8 +1,8 @@
 id: helipad
 title: "Helipad"
-version: 0.1.11-beta
+version: 0.1.11-beta2
 release-notes: |
-  * v0.1.11-beta - Reply boosts
+  * v0.1.11-beta2 - Browser Reply boosts, more app icons, automated boost icon, and csv exports
 license: mit
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
