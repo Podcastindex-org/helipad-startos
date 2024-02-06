@@ -1,8 +1,13 @@
-id: helipad 
+id: helipad
 title: "Helipad"
-version: 0.1.10.5
+version: 0.1.11
 release-notes: |
-  * v0.1.10 - Elements of style... (v0.1.10) [Release Notes](https://github.com/Podcastindex-org/helipad/releases/tag/v0.1.10)
+  * Added missing User-Agent header when calling the Podcast Index API
+  * Added reply boosts, sent tab, and password protection
+  * Show automated boosts in the Boosts tab
+  * Added browser-based reply boosts (e.g. WebLN, Alby)
+  * Added icons for LN Beats, Podcast Guru, and TrueFans
+  * Added boosts, streams, and sent lists to CSV export and fixed positional params
 license: mit
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
@@ -31,7 +36,11 @@ health-checks:
     name: Web Interface
     success-message: Helipad is ready to visit in a web browser
     type: script
-config: ~
+config:
+  get:
+    type: script
+  set:
+    type: script
 properties:
   type: script
 volumes:
@@ -60,7 +69,7 @@ interfaces:
       - http
 dependencies:
   lnd:
-    version: ">=0.13.4 <0.17.0"
+    version: ">=0.13.4"
     description: Used to communicate with your Lightning wallet.
     requirement:
       type: required
