@@ -5,6 +5,8 @@ set -e
 export HELIPAD_DATABASE_DIR="/data/db/database.db"
 export HELIPAD_LISTEN_PORT="2112"
 export HELIPAD_RUNAS_USER="helipad"
+export HELIPAD_PASSWORD=$(yq -r .password /data/start9/config.yaml)
+
 export LND_ADMINMACAROON="/mnt/lnd/admin.macaroon"
 export LND_TLSCERT="/mnt/lnd/tls.cert"
 export LND_URL="lnd.embassy:10009"
