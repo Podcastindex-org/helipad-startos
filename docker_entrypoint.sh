@@ -30,6 +30,20 @@ if ! [ -f "/usr/local/share/ca-certificates/cert.crt" ]; then
   update-ca-certificates
 fi
 
+echo "Writing properties"
+cat << EOF > /data/start9/stats.yaml
+---
+version: 2
+data:
+  Password:
+    type: string
+    value: $HELIPAD_PASSWORD
+    description: Copy this password to login. Change this value in Config.
+    copyable: true
+    qr: false
+    masked: true
+EOF
+
 echo "Starting Helipad..."
 cd /opt/helipad
 
