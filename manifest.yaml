@@ -21,7 +21,7 @@ description:
     Lightning node from your listeners who are using Podcasting 2.0 apps.
 assets:
   license: LICENSE
-  icon: icon.jpg
+  icon: helipad.png
   instructions: instructions.md
 main:
   type: docker
