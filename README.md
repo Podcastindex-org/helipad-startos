@@ -1,93 +1,69 @@
-# Wrapper for Helipad
+<p align="center">
+  <img src="helipad.png" alt="Project Logo" width="21%">
+</p>
 
-`Helipad` shows boosts and boostagram messages coming in to your Lightning node from your listeners who are using Podcasting 2.0 apps.
+# Helipad for StartOS
 
-## StartOS Service Pre-Requisites:
+`Helipad` shows boosts and boostagram messages coming in to to your Lightning node from your listeners who are using Podcasting 2.0 apps.
 
-- [lnd](https://github.com/Start9Labs/lnd-wrapper)
+This repository creates the `s9pk` package that is installed to run `Helipad` on [StartOS](https://github.com/Start9Labs/start-os/).
 
 ## Dependencies
 
+Prior to building the `helipad` package, it's essential to configure your build environment for StartOS services. You can find instructions on how to set up the appropriate build environment in the [Developer Docs](https://docs.start9.com/latest/developer-docs/packaging).
+
 - [docker](https://docs.docker.com/get-docker)
 - [docker-buildx](https://docs.docker.com/buildx/working-with-buildx/)
-- [yq](https://mikefarah.gitbook.io/yq)
-- [toml](https://crates.io/crates/toml-cli)
-- [embassy-sdk](https://github.com/Start9Labs/embassy-os/tree/master/backend)
+- [deno](https://deno.land/)
 - [make](https://www.gnu.org/software/make/)
-
-## Build enviroment
-Prepare your StartOS build enviroment. In this example we are using Ubuntu 20.04.
-
-1. Install docker
-```
-curl -fsSL https://get.docker.com -o- | bash
-sudo usermod -aG docker "$USER"
-exec sudo su -l $USER
-```
-2. Set buildx as the default builder
-```
-docker buildx install
-docker buildx create --use
-```
-3. Enable cross-arch emulated builds in docker
-```
-docker run --privileged --rm linuxkit/binfmt:v0.8
-```
-4. Install yq
-```
-sudo snap install yq
-```
-5. Install essentials build packages
-```
-sudo apt-get install -y build-essential openssl libssl-dev libc6-dev clang libclang-dev ca-certificates
-```
-6. Install Rust
-```
-curl https://sh.rustup.rs -sSf | sh
-# Choose nr 1 (default install)
-source $HOME/.cargo/env
-```
-7. Install toml
-```
-cargo install toml-cli
-```
-8. Build and install start-os sdk
-```
-cd ~/ && git clone https://github.com/Start9Labs/start-os.git
-cd start-os/backend/
-./install-sdk.sh
-```
+- [start-sdk](https://github.com/Start9Labs/start-os/tree/sdk/core)
+- [yq](https://mikefarah.gitbook.io/yq)
 
 ## Cloning
 
-Clone the project locally. Note the submodule link to the original project(s). 
+Clone the **Helipad** package repository locally.
 
 ```
-git clone https://github.com/ericpp/helipad-startos.git
+git clone https://github.com/Podcastindex-org/helipad-startos.git
 cd helipad-startos
-git submodule update --init --recursive
 ```
+
 ## Building
 
-To build the project, run the following commands:
+To build the **Helipad** service as a universal package, run the following command:
 
 ```
 make
 ```
 
+Alternatively the package can be built for individual architectures by specifying the architecture as follows:
+
+```
+# for amd64
+make x86
+```
+or
+```
+# for arm64
+make arm
+```
+
 ## Installing (on StartOS)
 
-SSH into a StartOS device.
-`scp` the `.s9pk` to any directory from your local machine.
-Run the following command to install the package:
+Before installation, define `host: https://server-name.local` in your `~/.embassy/config.yaml` config file then run the following commands to determine successful install:
+
+> :information_source: Change server-name.local to your Start9 server address
 
 ```
-embassy-cli auth login
-#Enter your embassy password then run:
-embassy-cli package install /path/to/helipad.s9pk
+start-cli auth login
+#Enter your StartOS password
+make install
 ```
+
+**Tip:** You can also install the `helipad.s9pk` by sideloading it under the **StartOS > System > Sideload a Service** section.
+
 ## Verify Install
 
-Go to your StartOS Services page, select Helipad and start the service.
+Go to your StartOS Services page, select **Helipad**, then configure and start the service.
 
-#Done
+**Done!**
