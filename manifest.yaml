@@ -1,6 +1,6 @@
 id: helipad
 title: "Helipad"
-version: 0.1.11
+version: 0.1.12-beta
 release-notes: |
   * Added missing User-Agent header when calling the Podcast Index API
   * Added reply boosts, sent tab, and password protection
