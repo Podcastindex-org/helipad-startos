@@ -1,13 +1,12 @@
 id: helipad
 title: "Helipad"
-version: 0.1.11
+version: 0.2.0
 release-notes: |
-  * Added missing User-Agent header when calling the Podcast Index API
-  * Added reply boosts, sent tab, and password protection
-  * Show automated boosts in the Boosts tab
-  * Added browser-based reply boosts (e.g. WebLN, Alby)
-  * Added icons for LN Beats, Podcast Guru, and TrueFans
-  * Added boosts, streams, and sent lists to CSV export and fixed positional params
+  * New settings page which includes settings for boosts, sounds, custom numerology and webhooks
+  * Improve strange TLV handling
+  * Added axum framework
+  * Added new TrueFans logo
+  * Added The Split Kit to the apps list
 license: mit
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
