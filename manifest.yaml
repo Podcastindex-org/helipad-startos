@@ -12,7 +12,7 @@ release-notes: |
   * Add a pew queue to make sure overlapping pews do not get skipped
   * Fix reply boosts to handle empty wallet key/values and Fountain wallet ids
   * Fix sound upload caching issues
-license: mit
+license: MIT
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
 support-site: "https://podcastindex.social"
