@@ -20,8 +20,15 @@ if ! [ -d "/data/db" ]; then
   echo "Creating database directory"
   mkdir -p /data/db
   touch /data/db/database.db
-  chown -R helipad:helipad /data/db
 fi
+
+if ! [ -d "/data/sounds" ]; then
+  echo "Creating sounds directory"
+  mkdir -p /data/sounds
+fi
+
+chown -R helipad:helipad /data/db
+chown -R helipad:helipad /data/sounds
 
 if ! [ -f "/usr/local/share/ca-certificates/cert.crt" ]; then
   echo "Trusting Start OS certificate"

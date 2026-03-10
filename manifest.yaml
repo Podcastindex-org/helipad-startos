@@ -1,17 +1,24 @@
 id: helipad
 title: "Helipad"
-version: 0.2.1
+version: 0.2.2
 release-notes: |
-  * Add podcast filter
-  * Add njump links for Nostr references and setting to resolve npubs to names
-  * Add custom reports to settings page
-  * Show hosted wallet info
-  * Add icon for wherever.audio
-  * Format timestamp hover according to current locale
-  * Add ability to trigger webhooks on certain amounts
-  * Add a pew queue to make sure overlapping pews do not get skipped
-  * Fix reply boosts to handle empty wallet key/values and Fountain wallet ids
-  * Fix sound upload caching issues
+  * Support for Fountain, Podcast Guru, and Boostbox metadata for BOLT11 invoices
+  * Support for LNURL boost replies (boostbacks)
+  * New sound, webhook, MIDI instrument, and OSC triggers based on boost amount, sender, app name, podcast
+  * New option to show regular Lightning invoices in boost list
+  * New webhook direction field to indicate incoming/outgoing boosts
+  * New websocket connection for more immediate pews
+  * New option to stay logged in for 30 days
+  * New action_name field in CSV exports/reports
+  * New api login endpoint
+  * Show split name as a part of the wallet info
+  * Add scrollbar to podcast filter
+  * Set report default to one month ago with end time of 23:59:59
+  * Set report date/time format to YYYY-MM-DD HH:MM:SS with a separate timezone column
+  * Switch BTC price data to Blockchain.com
+  * Prevent the browser from caching pew sounds
+  * Add V4VMusic app to apps list
+  * Update LND protos and payment calls and added invoice subscriptions
 license: MIT
 wrapper-repo: "https://github.com/Podcastindex-org/helipad-startos"
 upstream-repo: "https://github.com/Podcastindex-org/helipad"
@@ -82,9 +89,9 @@ backup:
   create:
     type: docker
     image: compat
-    system: true 
-    entrypoint: compat 
-    args: 
+    system: true
+    entrypoint: compat
+    args:
       - duplicity
       - create
       - /mnt/backup
